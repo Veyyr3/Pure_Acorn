@@ -3,7 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 /* Copyright © 2026 Veyyr3
-  Light Acorn Framework: Kernel
+  Pure Acorn Framework: Kernel
   Lord of the Framework: Veyyr3
 */
 

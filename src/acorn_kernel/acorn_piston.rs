@@ -1,8 +1,13 @@
-// (c) 2026 Lord of the Pure Acorn: Veyyr3.
-// This file is part of Pure Acorn and is distributed under the MIT License.
-// See the LICENSES folder in the project root for the full license text.
+// This Source Code Form is subject to the terms of the Mozilla Public 
+// License, v. 2.0. If a copy of the MPL was not distributed with this 
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-// src/acorn_kernel/acorn_render.rs
+/* Copyright © 2026 Veyyr3
+  Pure Acorn Framework: Kernel
+  Lord of the Framework: Veyyr3
+*/
+
+// src/acorn_kernel/acorn_piston.rs
 use crate::acorn_kernel::{
     acorn_heart::AcornECS, 
     acorn_settings::AcornContext
@@ -28,7 +33,7 @@ pub fn acorn_loop(mut acorn_context: AcornContext, mut acorn_ecs: AcornECS) {
 
             // Reverse cycle for protect from panic (101 errors) in runtime
             // Functions go by reverse order
-            // Warning: You should add new functions from down to top
+            // Warning: You should add new functions from down to top in acorn_init.rs
             for fn_index in (0..fn_count).rev() {
                 let function = 
                 acorn_context.acorn_zone
