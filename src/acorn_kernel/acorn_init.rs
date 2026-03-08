@@ -8,38 +8,57 @@ use bevy_ecs::prelude::*;
 /// Create here your Zones and Locations. 
 /// It's your interface. (sorry, code doesn't let me use GUI here)
 /// Add function to Location, Location to Zone.
-/// Warning: If you want to add new Zone then you should add new cycle "for" in acorn_render (read in docs about this).
+/// Warning: If you want to add new Zone then you should add new cycle "for" in acorn_piston (read in docs about this).
 pub fn acorn_setup() -> AcornContext {
     /* 
     Here is an example. 
     
-    ======================
+
     Locations don't need variables! But you can use variables if you want.
     Warning: Variables of Locations should exists before variables of Zones in acorn_setup.
-    ======================
 
     ======================
     Memorise: read code from top to down. Locations, Zones will run by chain.
     ======================
-    Warning Memorise: Functions will run from down to top (see reason in acorn_render.rs)
+    Warning Memorise: Functions will run from down to top (see reason in acorn_piston.rs)
     ======================
     */
 
     /*
+    ======================
     Also I offer to you Lord-Minor achitecture to full control life of functions.
+    ======================
 
     Lord-Location: here are Lord-Functions which can change other functions order in Minor-Locations.
     For each Lord-Functions in Lord-Location you should create own Minor-Location.
 
     Minor-Location: here are functions which obey to Lord-Function. They listen him and die, move or born by his orders.
 
+    ======================
+    Example: 
+    if there are 3 Lord-Functions in Lord-Location then 3 Minor-Locations for each Lord-Functions.
+    ======================
+    OR Just Memorise: One Lord-Function = One his Minor-Location.
+    ======================
     But YOU are not required to use this architecture. You are Lord of your ideas.
+    ======================
     */
 
     // before_2d_zone (Ex: UI input, ECS Queries, 3D Mesh drawing and other Locations)
     let before_2d_zone = Zone::default()
     .with_locations(vec![
-        // Location.
+        // Lord-Location.
+        Location::from_fn_vec(vec![
+            /*
+            Put here your Lords.
+            Lords should changing his Minor-Location.
+            In the code's bottom there are examples from Light Acorn, and so...
+            PLEASE, come up with your own events that Lords will change theirs Minors.
+            Because now is_key_pressed from Macroquad which is not here.
+             */
+            // acorn_example_delete_function
+        ]),
+        // Minor-Location.
         Location::from_fn_vec(vec![
             acorn_example_greeting,
             acorn_example_query_ecs,
