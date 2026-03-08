@@ -11,7 +11,7 @@
 use bevy_ecs::prelude::*;
 use crate::acorn_kernel::acorn_settings::AcornContext;
 
-// ---------------------------- Heart of Light Acorn ----------------------------
+// ---------------------------- Heart of Pure Acorn ----------------------------
 
 /// Alias of function (alias is pseudonym of data type)
 /// All functions should have World argument but not required use it
