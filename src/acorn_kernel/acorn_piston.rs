@@ -1,6 +1,11 @@
-// (c) 2026 Lord of the Pure Acorn: Veyyr3.
-// This file is part of Pure Acorn and is distributed under the MIT License.
-// See the LICENSES folder in the project root for the full license text.
+// This Source Code Form is subject to the terms of the Mozilla Public 
+// License, v. 2.0. If a copy of the MPL was not distributed with this 
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+/* Copyright © 2026 Veyyr3
+  Pure Acorn Framework: Kernel
+  Lord of the Framework: Veyyr3
+*/
 
 // src/acorn_kernel/acorn_piston.rs
 use crate::acorn_kernel::acorn_heart::{Zone, AcornECS};
