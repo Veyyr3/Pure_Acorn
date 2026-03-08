@@ -1,48 +1,35 @@
-// This Source Code Form is subject to the terms of the Mozilla Public 
-// License, v. 2.0. If a copy of the MPL was not distributed with this 
-// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+// (c) 2026 Lord of the Pure Acorn: Veyyr3.
+// This file is part of Pure Acorn and is distributed under the MIT License.
+// See the LICENSES folder in the project root for the full license text.
 
-/* Copyright © 2026 Veyyr3
-  Pure Acorn Framework: Kernel
-  Lord of the Framework: Veyyr3
-*/
+// src/acorn_kernel/acorn_render.rs
+use crate::acorn_kernel::acorn_heart::{Zone, AcornECS};
 
-// src/acorn_kernel/acorn_piston.rs
-use crate::acorn_kernel::{
-    acorn_heart::AcornECS, 
-    acorn_settings::AcornContext
-};
-
-/// Main loop of Pure Acorn.
-/// 
+/// Main loop of Light Acorn.
+/// You shouldn't touch this. 
 /// Warning: If you want to add new Zones you should touch this (read in docs about this).
-pub fn acorn_loop(mut acorn_context: AcornContext, mut acorn_ecs: AcornECS) {
+pub fn acorn_loop(before_2d_zone: Zone, after_2d_zone: Zone, mut ecs: AcornECS) {
     loop {
+
         // Run Schedule
-        acorn_ecs.schedule.run(&mut acorn_ecs.world);
+        ecs.schedule.run(&mut ecs.world);
 
-        // acorn_zone
-        let len_acorn_zone = acorn_context.acorn_zone.locations.len();
-
-        // locations go by order
-        for location_index in 0..len_acorn_zone {
-            let fn_count = acorn_context
-                .acorn_zone
-                .locations[location_index]
-                .functions.len();
-
-            // Reverse cycle for protect from panic (101 errors) in runtime
-            // Functions go by reverse order
-            // Warning: You should add new functions from down to top in acorn_init.rs
-            for fn_index in (0..fn_count).rev() {
-                let function = 
-                acorn_context.acorn_zone
-                    .locations[location_index]
-                    .functions[fn_index];
-                    
-                // Call function in strict order
-                function(&mut acorn_ecs.world, &mut acorn_context);
+        // before_2d_zone (Ex: UI input, ECS Queries, 3D Mesh drawing and other Locations)
+        for location in &before_2d_zone.locations {
+            for function in &location.functions {
+                function(&mut ecs.world); // Call function in strict order
             }
         }
+
+        // ---------------------------- Turn on 2D render ----------------------------
+
+        // after_2d_zone (Ex: UI draw and other Locations)
+        for location in &after_2d_zone.locations {
+            for function in &location.functions {
+                function(&mut ecs.world); // Call function in strict order
+            }
+        }
+
+        // ---------------------------- Next_frame ----------------------------
     }
 }
