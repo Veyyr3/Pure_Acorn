@@ -44,8 +44,8 @@ pub fn acorn_setup() -> AcornContext {
     ======================
     */
 
-    // before_2d_zone (Ex: UI input, ECS Queries, 3D Mesh drawing and other Locations)
-    let before_2d_zone = Zone::default()
+    // acorn_zone
+    let acorn_zone = Zone::default()
     .with_locations(vec![
         // Lord-Location.
         Location::from_fn_vec(vec![
@@ -70,7 +70,7 @@ pub fn acorn_setup() -> AcornContext {
 
     // Return AcornContext for Main function
     AcornContext { 
-        before_2d_zone, 
+        acorn_zone, 
     }
 }
 
@@ -135,10 +135,10 @@ fn acorn_example_update_oaks(world: &mut World, _context: &mut AcornContext) {
 //     // KILL ANY FUNCTION IN FIRST ZONE, SECOND LOCATION!
 //     // PRESS TAB!
 //     // of course you have right to write if/else checking to get rid of 101 error in runtime:
-//     // if !context.before_2d_zone.locations[1].functions.is_empty()
+//     // if !context.acorn_zone.locations[1].functions.is_empty()
 //     // but I leave this to understand REACORN-way for you
 //     if is_key_pressed(KeyCode::Tab) { 
-//         context.before_2d_zone.locations[1].functions.remove(0);
+//         context.acorn_zone.locations[1].functions.remove(0);
 //         println!("I've killed function! Message from: acorn_example_delete_function");
 //     }
 // }

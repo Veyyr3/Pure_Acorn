@@ -16,13 +16,13 @@ pub fn acorn_loop(mut acorn_context: AcornContext, mut acorn_ecs: AcornECS) {
         // Run Schedule
         acorn_ecs.schedule.run(&mut acorn_ecs.world);
 
-        // before_2d_zone (Ex: UI input, ECS Queries, 3D Mesh drawing and other Locations)
-        let len_before_2d_zone = acorn_context.before_2d_zone.locations.len();
+        // acorn_zone
+        let len_acorn_zone = acorn_context.acorn_zone.locations.len();
 
         // locations go by order
-        for location_index in 0..len_before_2d_zone {
+        for location_index in 0..len_acorn_zone {
             let fn_count = acorn_context
-                .before_2d_zone
+                .acorn_zone
                 .locations[location_index]
                 .functions.len();
 
@@ -31,7 +31,7 @@ pub fn acorn_loop(mut acorn_context: AcornContext, mut acorn_ecs: AcornECS) {
             // Warning: You should add new functions from down to top
             for fn_index in (0..fn_count).rev() {
                 let function = 
-                acorn_context.before_2d_zone
+                acorn_context.acorn_zone
                     .locations[location_index]
                     .functions[fn_index];
                     

@@ -11,5 +11,5 @@ use crate::acorn_kernel::{
 /// 
 /// Advise: better keep global statements in other struct.
 pub struct AcornContext {
-    pub before_2d_zone: Zone,
+    pub acorn_zone: Zone,
 }
