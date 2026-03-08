@@ -5,7 +5,7 @@
 // src/main.rs
 mod acorn_kernel;
 use acorn_kernel::{
-    acorn_render::acorn_loop, // import acorn_loop
+    acorn_piston::acorn_loop, // import acorn_loop
     acorn_heart::{Zone, Location, AcornECS}, // import Zone, Location, AcornECS
     acorn_settings::AcornContext, // struct AcornContext
 };

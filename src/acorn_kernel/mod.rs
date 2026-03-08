@@ -7,6 +7,6 @@
   Lord of the Framework: Veyyr3
 */
 
-pub mod acorn_render;
+pub mod acorn_piston;
 pub mod acorn_heart;
 pub mod acorn_settings;
