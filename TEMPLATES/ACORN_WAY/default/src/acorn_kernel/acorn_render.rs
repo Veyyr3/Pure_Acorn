@@ -6,7 +6,7 @@
 use macroquad::prelude::*;
 use crate::acorn_kernel::acorn_heart::{Zone, AcornECS};
 
-/// Main loop of Light Acorn.
+/// Main loop of Pure Acorn.
 /// You shouldn't touch this. 
 /// Warning: If you want to add new Zones you should touch this (read in docs about this).
 pub async fn acorn_loop(before_2d_zone: Zone, after_2d_zone: Zone, mut ecs: AcornECS) {

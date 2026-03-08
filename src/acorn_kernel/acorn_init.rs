@@ -92,7 +92,7 @@ Advise: Create functions in other files and import here.
 // ---------------------------- Example simple functions ----------------------------
 // All simple functions should have World argument but shouldn't use it.
 fn acorn_example_greeting(_world: &mut World, _context: &mut AcornContext) {
-    println!("Hello, Light Acorn!")
+    println!("Hello, Pure Acorn!")
 }
 
 // ---------------------------- Example ECS functions ----------------------------

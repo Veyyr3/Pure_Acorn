@@ -82,7 +82,7 @@ fn acorn_setup() -> (Zone, Zone) {
 // Advise: Create functions in other files and import here.
 // All simple functions should have World argument but shouldn't use it.
 fn acorn_example_greeting(_world: &mut World) {
-    print!("Hello, Light Acorn!")
+    print!("Hello, Pure Acorn!")
 }
 
 fn acorn_example_draw_circle(_world: &mut World) {
@@ -144,7 +144,7 @@ fn acorn_example_runtime_spawner(world: &mut World) {
     }
 }
 
-#[macroquad::main("Light Acorn test")]
+#[macroquad::main("Pure Acorn test")]
 async fn main() {
     // Global variable ECS. Hand over to acorn_loop.
     let mut acorn_ecs = AcornECS::default();
