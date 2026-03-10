@@ -4,7 +4,11 @@
 
 Hi! This was done on an old 2013 X550CC laptop and antiX.
 
-Pure Acorn is clean Acorn architecture.
+**Pure Acorn is clean Acorn architecture.**
+
+**Pure has his brother Light:** Everything is like in Pure but with Macroquad to create games.
+
+[Light Acorn. Click here.](https://github.com/Veyyr3/Light_Acorn)
 
 # Features
 
