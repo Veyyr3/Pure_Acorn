@@ -8,8 +8,6 @@
 // src/acorn_kernel/acorn_settings.rs
 use crate::acorn_kernel::{
     acorn_heart::Zone, 
-    // suggestions
-    acorn_tools::acorn_game_tools::agt_heart::Acorn3DAssetDatabase
 };
 
 /// Contain here your Zones and global statements 
@@ -19,12 +17,10 @@ pub struct AcornContext {
     pub before_2d_zone: Zone,
     pub after_2d_zone: Zone,
     // add here your Zone trough comma
-    // from game tools
-    pub assets_3d: Acorn3DAssetDatabase,
 }
 ```
 
-**2 Step: add new loop in acorn_render.rs into acorn_loop function by this template:**
+**2 Step: add new loop in acorn_piston.rs into acorn_loop function by this template:**
 
 ```rust
 let len_your_zone = acorn_context.your_zone.locations.len();
@@ -44,7 +40,7 @@ for location_index in 0..len_your_zone {
         acorn_context.your_zone
             .locations[location_index]
             .functions[fn_index];
-            
+
         // Call function in strict order
         function(&mut acorn_ecs.world, &mut acorn_context);
     }
@@ -84,7 +80,7 @@ let your_zone = Zone::default()
 
 ## ACORN-way
 
-**1 Step: open acorn_render.rs and add new loop in acorn_render.rs into acorn_loop function by this template:**
+**1 Step: open acorn_piston.rs and add new loop in acorn_piston.rs into acorn_loop function by this template:**
 
 ```rust
 for location in &your_zone.locations {
@@ -113,7 +109,7 @@ let your_zone = Zone::default()
     .with_locations(vec![
         // test location
         Location::from_fn_vec(vec![
-            acorn_example_draw_circle,
+            acorn_example_greeting,
             // add own functions through comma 
         ]),
         // add own locations through comma 
@@ -145,5 +141,3 @@ async fn main() {
 ```
 
 **And it's all!**
-
-
