@@ -1,0 +1,95 @@
+// (c) 2026 Lord of the Pure Acorn: Veyyr3.
+// This file is part of Pure Acorn and is distributed under the AGPL-3.0 License.
+// See the LICENSE folder in the project root for the full license text.
+
+// src/acorn_kernel/acorn_init.rs
+
+use crate::acorn_kernel::acorn_heart::{
+    Zone,
+    Location,
+};
+use bevy_ecs::prelude::*;
+
+/// Create here your Zones and Locations. 
+/// It's your interface. (sorry, code doesn't let me use GUI here)
+/// Add function to Location, Location to Zone.
+/// Warning: If you want to add new Zone then you should add new cycle "for" in acorn_render (read in docs about this).
+pub fn acorn_setup() -> Zone {
+    /* 
+    Here is an example. 
+    
+    Locations don't need variables! But you can use variables if you want.
+
+    ======================
+    Warning: Variables of Locations should exists before variables of Zones in acorn_setup.
+    ======================
+
+    ======================
+    Memorise: read code from top to down. Functions, Locations, Zones will run by chain.
+    ======================
+    */
+
+    // acorn_zone
+    let acorn_zone = Zone::default()
+    .with_locations(vec![
+        // test location
+        Location::from_fn_vec(vec![
+            // simple function
+            acorn_example_greeting,
+            // ECS
+            acorn_example_update_oaks, // update ECS state
+            acorn_example_query_ecs, // print result
+            // add own functions through comma 
+        ]),
+        // add own locations through comma 
+    ]);
+
+    // Return tuple of Zones (or 1 Zone) for Main function
+    acorn_zone
+}
+
+// ---------------------------- Example simple functions ----------------------------
+// Advise: Create functions in other files and import here.
+// All simple functions should have World argument but shouldn't use it.
+fn acorn_example_greeting(_world: &mut World) {
+    print!("Hello, Pure Acorn!")
+}
+
+// ---------------------------- Example ECS functions ----------------------------
+// Advise: Create functions in other files and import here.
+// All ECS functions should have World argument.
+
+// create component
+#[derive(Component)]
+struct Oaks {x: u64}
+
+// Use spawn entities in fn main
+pub fn acorn_example_spawn_entity(world: &mut World) {
+    world.spawn((
+        Oaks { x: 100 },
+    ));
+    println!("Entity spawned!");
+}
+
+// Add this function into location
+fn acorn_example_query_ecs(world: &mut World) {
+    // create query
+    let mut query = world.query::<&Oaks>();
+    
+    // cycle for all entities
+    for oaks in query.iter(world) {
+        println!("Entity has: {} oaks", oaks.x);
+    }
+}
+
+// Add this function into location
+fn acorn_example_update_oaks(world: &mut World) {
+    // create query
+    let mut query = world.query::<&mut Oaks>();
+
+    // loop for all entities. 
+    // Spoiler: loop will be over when oaks reach 18 446 744 073 709 551 615 :)
+    for mut oaks in query.iter_mut(world) {
+        oaks.x += 1; 
+    }
+}

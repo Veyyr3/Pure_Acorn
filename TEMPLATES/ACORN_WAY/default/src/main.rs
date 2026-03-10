@@ -6,12 +6,11 @@
 mod acorn_kernel;
 use acorn_kernel::{
     acorn_piston::acorn_loop, // import acorn_loop
-    acorn_heart::AcornECS, // AcornECS
+    acorn_heart::AcornECS, // import AcornECS
     acorn_init::{
         acorn_setup,
-        // example funtion to spawn entities
-        acorn_example_spawn_entity,
-    },
+        acorn_example_spawn_entity
+    }
 };
 
 /*
@@ -20,27 +19,28 @@ Hi!
 This main.rs file is the example which you may try and search.
 
 ======================
-Right now you are using tempelate REACORN-way (when you can reoder functions in runtime).
-BUT IF YOU DON'T WANT MUTABLE CODE IN RUNTIME: use ACORN WAY template in "TEMPLATES" folder.
+Right now you are using tempelate ACORN-way 
+(When you put function in strict order. Functions order is not mutable in runtime).
 ======================
 
 See other templates of projects in "TEMPLATES" folder.
 
 ======================
-Memorise: Zone is when, Location is where, Function is time-marker.
+Memorise: Zone is when, Location is where, Function is atom.
 ======================
 */
+
 
 fn main() {
     // Global variable ECS. Hand over to acorn_loop.
     let mut acorn_ecs = AcornECS::default();
 
     // Global variable of Zones. Hand over to acorn_loop.
-    let mut acorn_context = acorn_setup();
+    let acorn_zone = acorn_setup();
 
-    // Create entities here before loop (or in runtime by your logic)
-    acorn_example_spawn_entity(&mut acorn_ecs.world, &mut acorn_context);
+    // Create entities here (or in runtime by your logic)
+    acorn_example_spawn_entity(&mut acorn_ecs.world);
 
     // main loop
-    acorn_loop(acorn_context, acorn_ecs);
+    acorn_loop(acorn_zone, acorn_ecs);
 }
