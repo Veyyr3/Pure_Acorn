@@ -28,15 +28,11 @@ World to change data. Context to change functions or global states.
 
 In acorn_setup developer create intial Zones, Locations, Functions. Main function use data from acorn_setup and execute acorn_loop.
 
-## The Light Acorn Loop
+## The Pure Acorn Loop
 
-<img src="/DOCS/imgs/how_it_works/how_to_use.png" title="" alt="" data-align="center">
+**Pure Acorn Loop based on loop**. Developer uses in the Pure Acorn API to add Zone&Locations. Zone is container of own developer's locations. Location is container of own developer's functions. 
 
-**Light Acorn Loop** based on **Macroquad async function**. Developer uses in the Light Acorn API 2 zones: **before** and **after** turning on 2d render. Zone is container of own developer's locations. Location is container of own developer's functions. 
-
-**Function should be AcornFunction** but it **can contents anything**: Macroquad functions, bevy_ecs Queries, function of other library or custom function of developer. Of course, developer can add own Zones (see in other doc).
-
-**Actually Light Acorn is Macroquad with architecture.**
+**Function should be AcornFunction** but it **can contents anything**: bevy_ecs Queries, function of other library or custom function of developer. Of course, developer can add own Zones (see in other doc).
 
 **Features:** Developer can change function's order in locations. Developer can change location's order in zones. Developer can change order of zones. In ACORN-way developer can't reorder functions in runtime. In REACORN-way developer can reorder functions in runtime.
 
@@ -98,5 +94,3 @@ fn acorn_example_update_oaks(world: &mut World, _context: &mut AcornContext) {
 **OR Just Memorise:** ***One Lord-Function = One his Minor-Location.***
 
 **But YOU are not required to use this architecture. You are Lord of your ideas.**
-
-
