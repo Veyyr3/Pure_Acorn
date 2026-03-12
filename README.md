@@ -2,6 +2,8 @@
 
 <img title="" src="/DOCS/logo_pure_acorn.png" alt="" width="168" data-align="center">
 
+**Pure Acorn** is Full Open Source Project under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
+
 Hi! This was done on an old 2013 X550CC laptop and antiX.
 
 **Pure Acorn is clean Acorn architecture.**
