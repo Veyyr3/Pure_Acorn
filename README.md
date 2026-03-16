@@ -4,7 +4,7 @@
 
 **Pure Acorn** is **Full Open Source Project** under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
-Hi! This was done on an old 2013 X550CC laptop and antiX.
+This was done on an old 2013 X550CC laptop and antiX.
 
 > **Pure Acorn is clean Acorn architecture.**
 
