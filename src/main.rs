@@ -25,6 +25,8 @@ Hi!
 
 This main.rs file is the example which you may try and search.
 
+Examples are in acorn_zinit.rs and acorn_ginit.rs which you may try and search.
+
 ======================
 Right now you are using tempelate REACORN-way (when you can reoder functions in runtime).
 BUT IF YOU DON'T WANT MUTABLE CODE IN RUNTIME: use ACORN WAY template in "TEMPLATES" folder.
