@@ -7,8 +7,6 @@ Warning: YOU shouldn't delete this file because other Acorn files use AcornZoneC
 */
 
 // src/acorn_settings.rs
-// game suggestions
-// use crate::acorn_tools::acorn_game_tools::agt_heart::Acorn3DAssetDatabase;
 
 /// Contain here your global statements 
 pub struct AcornGlobalContext {
