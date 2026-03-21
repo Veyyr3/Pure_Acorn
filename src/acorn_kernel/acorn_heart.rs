@@ -8,13 +8,14 @@
 */
 
 // src/acorn_kernel/acorn_heart.rs
+use crate::acorn_settings::AcornGlobalContext;
 use bevy_ecs::prelude::*;
 
 // ---------------------------- Heart of Pure Acorn ----------------------------
 
 /// Alias of function (alias is pseudonym of data type)
 /// All functions should have World argument but not required use it
-pub type AcornFunction = fn(&mut World); 
+pub type AcornFunction = fn(&mut World, &mut AcornGlobalContext); 
 
 /// Location is group of functions
 pub struct Location {

@@ -4,13 +4,16 @@
 
 // src/main.rs
 mod acorn_kernel;
+mod acorn_settings;
+mod acorn_zinit;
+
 use acorn_kernel::{
     acorn_piston::acorn_loop, // import acorn_loop
     acorn_heart::AcornECS, // import AcornECS
-    acorn_init::{
-        acorn_setup,
-        acorn_example_spawn_entity
-    }
+};
+use acorn_zinit::{
+    acorn_setup,
+    acorn_example_spawn_entity
 };
 
 /*

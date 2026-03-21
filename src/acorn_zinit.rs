@@ -2,7 +2,7 @@
 // This file is part of Pure Acorn and is distributed under the AGPL-3.0 License.
 // See the LICENSE folder in the project root for the full license text.
 
-// src/acorn_kernel/acorn_init.rs
+// src/acorn_kernel/acorn_zinit.rs
 
 use crate::acorn_kernel::acorn_heart::{
     Zone,
