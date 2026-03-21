@@ -25,7 +25,8 @@ Hi!
 This main.rs file is the example which you may try and search.
 
 ======================
-See acorn_zinit.rs file to start write your functions.
+Examples are in acorn_zinit.rs and acorn_ginit.rs which you may try and search.
+Write YOUR first function in acorn_zinit.rs!
 ======================
 
 ======================
