@@ -15,9 +15,9 @@ use acorn_kernel::{
 use acorn_ginit::acorn_global_setup; 
 // 
 use acorn_zinit::{
-        acorn_setup,
-        // example funtion to spawn entities
-        acorn_example_spawn_entity,
+    acorn_setup,
+    // example funtion to spawn entities
+    acorn_example_spawn_entity,
 };
 
 /*
