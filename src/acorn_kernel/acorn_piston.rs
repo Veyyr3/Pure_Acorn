@@ -5,23 +5,27 @@
 // src/acorn_kernel/acorn_piston.rs
 use crate::acorn_kernel::{
     acorn_heart::AcornECS, 
-    acorn_settings::AcornContext
+    acorn_settings::{AcornGlobalContext, AcornZoneContext}
 };
 
 /// Main loop of Pure Acorn.
 /// 
 /// Warning: If you want to add new Zones you should touch this (read in docs about this).
-pub fn acorn_loop(mut acorn_context: AcornContext, mut acorn_ecs: AcornECS) {
+pub fn acorn_loop(
+    mut acorn_ecs: AcornECS,
+    mut acorn_zone_context: AcornZoneContext, 
+    mut acorn_global_context:AcornGlobalContext
+) {
     loop {
         // Run Schedule
-        acorn_ecs.schedule.run(&mut acorn_ecs.world);
+        // acorn_ecs.schedule.run(&mut acorn_ecs.world);
 
         // acorn_zone
-        let len_acorn_zone = acorn_context.acorn_zone.locations.len();
+        let len_acorn_zone = acorn_zone_context.acorn_zone.locations.len();
 
         // locations go by order
         for location_index in 0..len_acorn_zone {
-            let fn_count = acorn_context
+            let fn_count = acorn_zone_context
                 .acorn_zone
                 .locations[location_index]
                 .functions.len();
@@ -31,12 +35,12 @@ pub fn acorn_loop(mut acorn_context: AcornContext, mut acorn_ecs: AcornECS) {
             // Warning: You should add new functions from down to top in acorn_init.rs
             for fn_index in (0..fn_count).rev() {
                 let function = 
-                acorn_context.acorn_zone
+                acorn_zone_context.acorn_zone
                     .locations[location_index]
                     .functions[fn_index];
                     
                 // Call function in strict order
-                function(&mut acorn_ecs.world, &mut acorn_context);
+                function(&mut acorn_ecs.world, &mut acorn_zone_context, &mut acorn_global_context);
             }
         }
     }

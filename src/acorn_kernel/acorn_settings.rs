@@ -8,8 +8,11 @@ use crate::acorn_kernel::{
 };
 
 /// Contain here your Zones and global statements 
-/// 
-/// Advise: better keep global statements in other struct.
-pub struct AcornContext {
+pub struct AcornZoneContext {
     pub acorn_zone: Zone,
+}
+
+/// Contain here your global statements 
+pub struct AcornGlobalContext {
+    // pub money: u8,
 }

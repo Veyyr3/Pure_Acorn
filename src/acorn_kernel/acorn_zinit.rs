@@ -5,15 +5,26 @@
 // src/acorn_kernel/acorn_init.rs
 use crate::acorn_kernel::{
     acorn_heart::{Zone, Location}, // import Zone, Location, AcornECS
-    acorn_settings::AcornContext, // struct AcornContext
+    acorn_settings::{AcornZoneContext, AcornGlobalContext}, // struct AcornZoneContext
 };
 use bevy_ecs::prelude::*;
+
+/*
+Create here your Zones, Locations. 
+It's your interface. (sorry, code doesn't let me use GUI here)
+
+Below, there are examples of Acorn functions.
+
+======================
+Warning: If you want to add new Zone then you should add new loop "for" in acorn_piston (read in docs about this).
+======================
+*/
 
 /// Create here your Zones and Locations. 
 /// It's your interface. (sorry, code doesn't let me use GUI here)
 /// Add function to Location, Location to Zone.
 /// Warning: If you want to add new Zone then you should add new cycle "for" in acorn_piston (read in docs about this).
-pub fn acorn_setup() -> AcornContext {
+pub fn acorn_setup() -> AcornZoneContext {
     /* 
     Here is an example. 
     
@@ -72,8 +83,8 @@ pub fn acorn_setup() -> AcornContext {
         // add own locations through comma 
     ]);
 
-    // Return AcornContext for Main function
-    AcornContext { 
+    // Return AcornZoneContext for Main function
+    AcornZoneContext { 
         acorn_zone, 
     }
 }
@@ -82,16 +93,29 @@ pub fn acorn_setup() -> AcornContext {
 Here are examples of functions.
 
 Create functions by this template:
-fn name(world: &mut World, context: &mut AcornContext) {
+fn name(
+    _world: &mut World, 
+    _zones: &mut AcornZoneContext, 
+    _context: &mut AcornGlobalContext
+) {
     // your_logic
 }
+
+Arguments:
+* world - for ECS Queries. This is necessary in order to process thousands of objects.
+* zones - for Lord-Functions. This is necessary for control Minor-Locations.
+* context - for Global States.
 
 Advise: Create functions in other files and import here.
 ====================== */
 
 // ---------------------------- Example simple functions ----------------------------
 // All simple functions should have World argument but shouldn't use it.
-fn acorn_example_greeting(_world: &mut World, _context: &mut AcornContext) {
+fn acorn_example_greeting(
+    _world: &mut World, 
+    _zones: &mut AcornZoneContext, 
+    _context: &mut AcornGlobalContext
+) {
     println!("Hello, Pure Acorn!")
 }
 
@@ -103,7 +127,11 @@ fn acorn_example_greeting(_world: &mut World, _context: &mut AcornContext) {
 struct Oaks {x: u64}
 
 // Use spawn entities in fn main
-pub fn acorn_example_spawn_entity(world: &mut World, _context: &mut AcornContext) {
+pub fn acorn_example_spawn_entity(
+    world: &mut World, 
+    _zones: &mut AcornZoneContext, 
+    _context: &mut AcornGlobalContext
+) {
     world.spawn((
         Oaks { x: 100 },
     ));
@@ -111,7 +139,11 @@ pub fn acorn_example_spawn_entity(world: &mut World, _context: &mut AcornContext
 }
 
 // Add this function into location
-fn acorn_example_query_ecs(world: &mut World, _context: &mut AcornContext) {
+fn acorn_example_query_ecs(
+    world: &mut World, 
+    _zones: &mut AcornZoneContext, 
+    _context: &mut AcornGlobalContext
+) {
     // create query
     let mut query = world.query::<&Oaks>();
     
@@ -122,7 +154,11 @@ fn acorn_example_query_ecs(world: &mut World, _context: &mut AcornContext) {
 }
 
 // Add this function into location
-fn acorn_example_update_oaks(world: &mut World, _context: &mut AcornContext) {
+fn acorn_example_update_oaks(
+    world: &mut World, 
+    _zones: &mut AcornZoneContext, 
+    _context: &mut AcornGlobalContext
+) {
     // create query
     let mut query = world.query::<&mut Oaks>();
 
@@ -135,23 +171,31 @@ fn acorn_example_update_oaks(world: &mut World, _context: &mut AcornContext) {
 
 // ---------------------------- Example Lord-Functions ----------------------------
 // Add this function into Lord-Location
-// fn acorn_example_delete_function(_world: &mut World, context: &mut AcornContext) {
+// fn acorn_example_delete_function(
+//     _world: &mut World, 
+//     zones: &mut AcornZoneContext, 
+//     _context: &mut AcornGlobalContext
+// ) {
 //     // KILL ANY FUNCTION IN FIRST ZONE, SECOND LOCATION!
 //     // PRESS TAB!
 //     // of course you have right to write if/else checking to get rid of 101 error in runtime:
-//     // if !context.acorn_zone.locations[1].functions.is_empty()
+//     // if !zones.acorn_zone.locations[1].functions.is_empty()
 //     // but I leave this to understand REACORN-way for you
 //     if is_key_pressed(KeyCode::Tab) { 
-//         context.acorn_zone.locations[1].functions.remove(0);
+//         zones.acorn_zone.locations[1].functions.remove(0);
 //         println!("I've killed function! Message from: acorn_example_delete_function");
 //     }
 // }
 
 // // Add this function into Lord-Location
-// fn acorn_example_add_circle_function(_world: &mut World, context: &mut AcornContext) {
+// fn acorn_example_add_circle_function(
+//     _world: &mut World, 
+//     zones: &mut AcornZoneContext, 
+//     _context: &mut AcornGlobalContext
+// ) {
 //     // press left mouse button to draw your circle!
 //     if is_mouse_button_pressed(MouseButton::Left) { 
-//         context.after_2d_zone.locations[1].functions.push(acorn_example_draw_circle);
+//         zones.after_2d_zone.locations[1].functions.push(acorn_example_draw_circle);
 //         println!("I've gave birth function! Message from: acorn_example_add_circle_function");
 //     }
 // }
