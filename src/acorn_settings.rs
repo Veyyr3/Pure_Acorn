@@ -7,7 +7,7 @@ use crate::acorn_kernel::{
     acorn_heart::Zone
 };
 
-/// Contain here your Zones and global statements 
+/// Contain here your Zones
 pub struct AcornZoneContext {
     pub acorn_zone: Zone,
 }
