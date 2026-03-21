@@ -4,16 +4,21 @@
 
 // src/main.rs
 mod acorn_kernel;
+mod acorn_settings;
+mod acorn_zinit;
+mod acorn_ginit;
 use acorn_kernel::{
     acorn_piston::acorn_loop, // import acorn_loop
     acorn_heart::AcornECS, // AcornECS
-    acorn_zinit::{
+};
+// to global setup
+use acorn_ginit::acorn_global_setup; 
+// 
+use acorn_zinit::{
         acorn_setup,
         // example funtion to spawn entities
         acorn_example_spawn_entity,
-    },
 };
-use crate::acorn_kernel::acorn_ginit::acorn_global_setup; // to global setup
 
 /*
 Hi!

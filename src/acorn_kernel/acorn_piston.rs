@@ -5,8 +5,8 @@
 // src/acorn_kernel/acorn_piston.rs
 use crate::acorn_kernel::{
     acorn_heart::AcornECS, 
-    acorn_settings::{AcornGlobalContext, AcornZoneContext}
 };
+use crate::acorn_settings::{AcornGlobalContext, AcornZoneContext};
 
 /// Main loop of Pure Acorn.
 /// 

@@ -3,7 +3,7 @@
 // See the LICENSE folder in the project root for the full license text.
 
 // src/acorn_gsetup.rs
-use crate::acorn_kernel::acorn_settings::{
+use crate::acorn_settings::{
     AcornGlobalContext,
 };
 

@@ -5,8 +5,8 @@
 // src/acorn_kernel/acorn_init.rs
 use crate::acorn_kernel::{
     acorn_heart::{Zone, Location}, // import Zone, Location, AcornECS
-    acorn_settings::{AcornZoneContext, AcornGlobalContext}, // struct AcornZoneContext
 };
+use crate::acorn_settings::{AcornZoneContext, AcornGlobalContext};
 use bevy_ecs::prelude::*;
 
 /*
