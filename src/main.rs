@@ -6,7 +6,7 @@
 mod acorn_kernel;
 mod acorn_settings;
 mod acorn_zinit;
-
+mod acorn_ginit;
 use acorn_kernel::{
     acorn_piston::acorn_loop, // import acorn_loop
     acorn_heart::AcornECS, // import AcornECS
@@ -15,11 +15,18 @@ use acorn_zinit::{
     acorn_setup,
     acorn_example_spawn_entity
 };
+use acorn_ginit::{
+    acorn_global_setup,
+};
 
 /*
 Hi!
 
 This main.rs file is the example which you may try and search.
+
+======================
+See acorn_zinit.rs file to start write your functions.
+======================
 
 ======================
 Right now you are using tempelate ACORN-way 
@@ -40,10 +47,12 @@ fn main() {
 
     // Global variable of Zones. Hand over to acorn_loop.
     let acorn_zone = acorn_setup();
+    // Global states. Hand over to acorn_loop.
+    let mut acorn_global_context = acorn_global_setup();
 
     // Create entities here (or in runtime by your logic)
-    acorn_example_spawn_entity(&mut acorn_ecs.world);
+    acorn_example_spawn_entity(&mut acorn_ecs.world, &mut acorn_global_context);
 
     // main loop
-    acorn_loop(acorn_zone, acorn_ecs);
+    acorn_loop(acorn_zone, acorn_ecs, acorn_global_context);
 }

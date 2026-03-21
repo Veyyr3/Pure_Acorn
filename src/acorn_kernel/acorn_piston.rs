@@ -8,20 +8,23 @@
 */
 
 // src/acorn_kernel/acorn_piston.rs
-use crate::acorn_kernel::acorn_heart::{Zone, AcornECS};
+use crate::{
+    acorn_kernel::acorn_heart::{AcornECS, Zone}, 
+    acorn_settings::AcornGlobalContext
+};
 
 /// Main loop of Pure Acorn.
 /// You shouldn't touch this. 
 /// Warning: If you want to add new Zones you should touch this (read in docs about this).
-pub fn acorn_loop(acorn_zone: Zone, mut ecs: AcornECS) {
+pub fn acorn_loop(acorn_zone: Zone, mut ecs: AcornECS, mut context: AcornGlobalContext) {
     loop {
         // Run Schedule
-        ecs.schedule.run(&mut ecs.world);
+        // ecs.schedule.run(&mut ecs.world);
 
         // acorn_zone
         for location in &acorn_zone.locations {
             for function in &location.functions {
-                function(&mut ecs.world); // Call function in strict order
+                function(&mut ecs.world, &mut context); // Call function in strict order
             }
         }
     }
