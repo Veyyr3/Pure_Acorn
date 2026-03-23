@@ -4,20 +4,31 @@
 
 // src/main.rs
 mod acorn_kernel;
+mod acorn_settings;
+mod acorn_zinit;
+mod acorn_ginit;
 use acorn_kernel::{
     acorn_piston::acorn_loop, // import acorn_loop
     acorn_heart::AcornECS, // AcornECS
-    acorn_init::{
-        acorn_setup,
-        // example funtion to spawn entities
-        acorn_example_spawn_entity,
-    },
+};
+// to global setup
+use acorn_ginit::acorn_global_setup; 
+// 
+use acorn_zinit::{
+    acorn_setup,
+    // example funtion to spawn entities
+    acorn_example_spawn_entity,
 };
 
 /*
 Hi!
 
 This main.rs file is the example which you may try and search.
+
+======================
+Examples are in acorn_zinit.rs and acorn_ginit.rs which you may try and search.
+Write YOUR first function in acorn_zinit.rs!
+======================
 
 ======================
 Right now you are using tempelate REACORN-way (when you can reoder functions in runtime).
@@ -36,11 +47,17 @@ fn main() {
     let mut acorn_ecs = AcornECS::default();
 
     // Global variable of Zones. Hand over to acorn_loop.
-    let mut acorn_context = acorn_setup();
+    let mut acorn_zone_context = acorn_setup();
+    // Global states. Hand over to acorn_loop.
+    let mut acorn_global_context = acorn_global_setup();
 
     // Create entities here before loop (or in runtime by your logic)
-    acorn_example_spawn_entity(&mut acorn_ecs.world, &mut acorn_context);
+    acorn_example_spawn_entity(
+        &mut acorn_ecs.world, 
+        &mut acorn_zone_context, 
+        &mut acorn_global_context
+    );
 
     // main loop
-    acorn_loop(acorn_context, acorn_ecs);
+    acorn_loop(acorn_ecs, acorn_zone_context, acorn_global_context);
 }
