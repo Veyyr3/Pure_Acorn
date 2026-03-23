@@ -2,18 +2,26 @@
 // This file is part of Pure Acorn and is distributed under the AGPL-3.0 License.
 // See the LICENSE folder in the project root for the full license text.
 
-// src/acorn_kernel/acorn_init.rs
+// src/acorn_zinit.rs
 
-use crate::acorn_kernel::acorn_heart::{
-    Zone,
-    Location,
+use crate::{
+    acorn_kernel::acorn_heart::{
+        Location, Zone
+    }, 
 };
+use crate::acorn_settings::AcornGlobalContext;
 use bevy_ecs::prelude::*;
+
+/*
+Add here your Functions in acorn_setup().
+
+Functions examples and template are below.
+*/
 
 /// Create here your Zones and Locations. 
 /// It's your interface. (sorry, code doesn't let me use GUI here)
 /// Add function to Location, Location to Zone.
-/// Warning: If you want to add new Zone then you should add new cycle "for" in acorn_render (read in docs about this).
+/// Warning: If you want to add new Zone then you should add new cycle "for" in acorn_piston (read in docs about this).
 pub fn acorn_setup() -> Zone {
     /* 
     Here is an example. 
@@ -48,10 +56,25 @@ pub fn acorn_setup() -> Zone {
     acorn_zone
 }
 
+/* ======================
+Here are examples of functions.
+
+Create functions by this template:
+fn name(_world: &mut World, _context: &mut AcornGlobalContext) {
+    // your_logic
+}
+
+Arguments:
+* world - for ECS Queries. This is necessary in order to process thousands of objects.
+* context - for Global States.
+
+Advise: Create functions in other files and import here.
+====================== */
+
 // ---------------------------- Example simple functions ----------------------------
 // Advise: Create functions in other files and import here.
 // All simple functions should have World argument but shouldn't use it.
-fn acorn_example_greeting(_world: &mut World) {
+fn acorn_example_greeting(_world: &mut World, _context: &mut AcornGlobalContext) {
     print!("Hello, Pure Acorn!")
 }
 
@@ -64,7 +87,7 @@ fn acorn_example_greeting(_world: &mut World) {
 struct Oaks {x: u64}
 
 // Use spawn entities in fn main
-pub fn acorn_example_spawn_entity(world: &mut World) {
+pub fn acorn_example_spawn_entity(world: &mut World, _context: &mut AcornGlobalContext) {
     world.spawn((
         Oaks { x: 100 },
     ));
@@ -72,7 +95,7 @@ pub fn acorn_example_spawn_entity(world: &mut World) {
 }
 
 // Add this function into location
-fn acorn_example_query_ecs(world: &mut World) {
+fn acorn_example_query_ecs(world: &mut World, _context: &mut AcornGlobalContext) {
     // create query
     let mut query = world.query::<&Oaks>();
     
@@ -83,7 +106,7 @@ fn acorn_example_query_ecs(world: &mut World) {
 }
 
 // Add this function into location
-fn acorn_example_update_oaks(world: &mut World) {
+fn acorn_example_update_oaks(world: &mut World, _context: &mut AcornGlobalContext) {
     // create query
     let mut query = world.query::<&mut Oaks>();
 
